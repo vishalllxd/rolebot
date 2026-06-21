@@ -36,4 +36,12 @@ client.on('messageCreate', async (message) => {
     }
     if (targetMember.roles.cache.has(role.id)) {
       await targetMember.roles.remove(role);
-      message.reply('Removed the ' + ROLE_NAME + ' role from ' +
+      message.reply('Removed the ' + ROLE_NAME + ' role from ' + targetMember.user.username);
+    } else {
+      await targetMember.roles.add(role);
+      message.reply('Gave the ' + ROLE_NAME + ' role to ' + targetMember.user.username);
+    }
+  }
+});
+
+client.login(process.env.TOKEN);
