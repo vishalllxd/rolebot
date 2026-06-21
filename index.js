@@ -1,4 +1,11 @@
 const { Client, GatewayIntentBits } = require('discord.js');
+const http = require('http');
+
+// Keep-alive web server for Render
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Bot is running!');
+}).listen(3000);
 
 const client = new Client({
   intents: [
@@ -34,13 +41,4 @@ client.on('messageCreate', async (message) => {
     }
 
     if (targetMember.roles.cache.has(role.id)) {
-      await targetMember.roles.remove(role);
-      message.reply(`Removed the **${ROLE_NAME}** role from ${targetMember.user.username}.`);
-    } else {
-      await targetMember.roles.add(role);
-      message.reply(`Gave the **${ROLE_NAME}** role to ${targetMember.user.username}.`);
-    }
-  }
-});
-
-client.login(process.env.TOKEN);
+      await
